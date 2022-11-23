@@ -1,0 +1,6 @@
+1.  Download VGGFace2
+2.  pretrain the model using VGGFace2
+3.  use vgg_pre.model for initial model
+4.  trian!
+
+5.  fine tuning!

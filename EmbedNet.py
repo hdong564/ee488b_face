@@ -30,7 +30,7 @@ class EmbedNet(nn.Module):
 
         data    = data.reshape(-1,data.size()[-3],data.size()[-2],data.size()[-1])
         outp    = self.__S__.forward(data)
-
+        
         if label == None:
             return outp
 

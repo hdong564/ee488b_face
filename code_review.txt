@@ -1,10 +1,10 @@
 code view
 
-1. put args(batch size, interval, epoch, train func, optim,
-   scheduler, lr, decay, #Classes, path, ... etc) to model 
-2. make transformation matrix
-3. activate trainloader
-4. ** kwargs: {
+1.  put args(batch size, interval, epoch, train func, optim,
+    scheduler, lr, decay, #Classes, path, ... etc) to model 
+2.  make transformation matrix
+3.  activate trainloader
+4.  ** kwargs: {
         batch_size 
         max_img_per_cls
         nDataLoaderThread 
@@ -29,9 +29,17 @@ code view
         mixedprec
         gpu
     } goto EmbedNetModel, LossFunction
-5. args: {
+5.  args: {
         ###trainfunc 
         ###optimizer 
         ###model
         ###nPerClass
     } these go to EmbedNet Class
+
+6.  load model file which contains weights of model
+    if already exists, load !
+7.  if we use initial model, we can load !
+
+    ***********
+    train model using VGGFACE2 dataset, and save the weights to exp_vggface directory
+    and use vgg pretrained model and update

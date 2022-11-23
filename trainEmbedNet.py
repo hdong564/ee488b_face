@@ -102,10 +102,14 @@ def main_worker(args):
 
     ## Load model weights
     modelfiles = glob.glob('{}/model0*.model'.format(args.save_path))
+    print(type(modelfiles))
     modelfiles.sort()
-
+    
+    pdb.set_trace() # breakpoint 3
+    
     ## If the target directory already exists, start from the existing file
     if len(modelfiles) >= 1:
+        print("Model training yet!")
         trainer.loadParameters(modelfiles[-1]);
         print("Model {} loaded from previous state!".format(modelfiles[-1]));
         it = int(os.path.splitext(os.path.basename(modelfiles[-1]))[0][5:]) + 1
@@ -114,9 +118,11 @@ def main_worker(args):
         print("Model {} loaded!".format(args.initial_model));
 
     ## If the current iteration is not 1, update the scheduler
+    
     for ii in range(1,it):
         trainer.__scheduler__.step()
-
+    print(it)
+    pdb.set_trace() # break point 4
     ## Print total number of model parameters
     pytorch_total_params = sum(p.numel() for p in s.__S__.parameters())
     print('Total model parameters: {:,}'.format(pytorch_total_params))
