@@ -1,0 +1,37 @@
+code view
+
+1. put args(batch size, interval, epoch, train func, optim,
+   scheduler, lr, decay, #Classes, path, ... etc) to model 
+2. make transformation matrix
+3. activate trainloader
+4. ** kwargs: {
+        batch_size 
+        max_img_per_cls
+        nDataLoaderThread 
+        test_interval 
+        max_epoch       
+        scheduler 
+        lr
+        lr_decay
+        weight_decay
+        margin
+        scale        
+        nClasses
+        initial_model
+        save_path
+        train_path
+        train_ext
+        test_path
+        test_list  
+        nOut
+        eval
+        output
+        mixedprec
+        gpu
+    } goto EmbedNetModel, LossFunction
+5. args: {
+        ###trainfunc 
+        ###optimizer 
+        ###model
+        ###nPerClass
+    } these go to EmbedNet Class

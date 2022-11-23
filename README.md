@@ -30,7 +30,6 @@ For softmax-based losses, `nPerClass` should be 1, and `nClasses` must be specif
 ```
 ResNet18
 ```
-
 ### Adding new models and loss functions
 
 You can add new models and loss functions to `models` and `loss` directories respectively. See the existing definitions for examples.

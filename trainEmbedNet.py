@@ -13,6 +13,9 @@ from EmbedNet import *
 from DatasetLoader import get_data_loader
 import torchvision.transforms as transforms
 
+#for debugging
+import pdb
+
 # ## ===== ===== ===== ===== ===== ===== ===== =====
 # ## Parse arguments
 # ## ===== ===== ===== ===== ===== ===== ===== =====
@@ -75,7 +78,8 @@ def main_worker(args):
 
     ## Load models
     s = EmbedNet(**vars(args)).cuda();
-
+    print(*vars(args))
+    pdb.set_trace() # breakpoint 2 
     it          = 1
 
     ## Input transformations for training
@@ -175,7 +179,7 @@ def main_worker(args):
 def main():
 
     os.environ["CUDA_VISIBLE_DEVICES"]='{}'.format(args.gpu)
-            
+    #pdb.set_trace() # break point 1
     if not(os.path.exists(args.save_path)):
         os.makedirs(args.save_path)
 
