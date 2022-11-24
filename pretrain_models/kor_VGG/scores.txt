@@ -1,0 +1,10 @@
+2022-11-24 15:36:36
+Namespace(batch_size=64, max_img_per_cls=500, nDataLoaderThread=5, test_interval=5, max_epoch=200, trainfunc='triplet', optimizer='adam', scheduler='steplr', lr=0.001, lr_decay=0.9, weight_decay=0, margin=0.1, scale=30, nPerClass=1, nClasses=9500, initial_model='', save_path='pretrain_models/kor_VGG', train_path='data/kor_VGGface2/train', train_ext='jpg', test_path='data/kor_VGGface2/val', test_list='data/VGGface2/val_pairs.csv', model='ResNet18', nOut=512, eval=False, output='', mixedprec=False, gpu=1)
+2022-11-24 15:37:57
+Namespace(batch_size=64, max_img_per_cls=500, nDataLoaderThread=5, test_interval=5, max_epoch=200, trainfunc='softmax', optimizer='adam', scheduler='steplr', lr=0.001, lr_decay=0.9, weight_decay=0, margin=0.1, scale=30, nPerClass=1, nClasses=9500, initial_model='', save_path='pretrain_models/kor_VGG', train_path='data/kor_VGGface2/train', train_ext='jpg', test_path='data/kor_VGGface2/val', test_list='data/VGGface2/val_pairs.csv', model='ResNet18', nOut=512, eval=False, output='', mixedprec=False, gpu=1)
+IT 1, TLOSS 6.34745
+IT 2, TLOSS 4.93825
+IT 3, TLOSS 3.73748
+IT 4, TLOSS 2.80197
+2022-11-24 16:07:49
+Namespace(batch_size=64, max_img_per_cls=500, nDataLoaderThread=5, test_interval=5, max_epoch=200, trainfunc='softmax', optimizer='adam', scheduler='steplr', lr=0.001, lr_decay=0.9, weight_decay=0, margin=0.1, scale=30, nPerClass=1, nClasses=9500, initial_model='', save_path='pretrain_models/kor_VGG', train_path='data/kor_VGGface2/train', train_ext='jpg', test_path='data/kor_VGGface2/val', test_list='data/kor_VGGface2/val_pairs.csv', model='ResNet18', nOut=512, eval=False, output='', mixedprec=False, gpu=1)

@@ -14,6 +14,12 @@ pip install -r requirements.txt
 python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/exp1 --nClasses 2000 --batch_size 200 --gpu 8
 ```
 
+
+### Training method I used
+```
+python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path pretrain_models/kor_VGG --batch_size 64 --max_epoch 200 --train_path data/kor_VGGface2/train --test_path data/kor_VGGface2/val --test_list data/kor_VGGface2/val_pairs.csv --gpu 1
+```
+
 GPU ID must be specified using `--gpu` flag.
 
 Use `--mixedprec` flag to enable mixed precision training. This is recommended for Tesla V100, GeForce RTX 20 series or later models.
