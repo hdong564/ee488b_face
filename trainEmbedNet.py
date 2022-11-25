@@ -79,7 +79,7 @@ def main_worker(args):
     ## Load models
     s = EmbedNet(**vars(args)).cuda();
     print("loaded args to EmbedNet")
-    pdb.set_trace() # breakpoint 2 
+    # pdb.set_trace() # breakpoint 2 
     it          = 1
 
     ## Input transformations for training
@@ -102,12 +102,14 @@ def main_worker(args):
 
     ## Load model weights
     modelfiles = glob.glob('{}/model0*.model'.format(args.save_path))
-    
+    # pdb.set_trace() # breakpoint 2 
+    print(args.save_path)
     modelfiles.sort()
     print("check weather model already exists")
-    pdb.set_trace() # breakpoint 3
+    # pdb.set_trace() # breakpoint 3
     
     ## If the target directory already exists, start from the existing file
+    # pdb.set_trace() # breakpoint 2 
     if len(modelfiles) >= 1:
         print("Model training yet!")
         trainer.loadParameters(modelfiles[-1]);
@@ -116,7 +118,7 @@ def main_worker(args):
     elif(args.initial_model != ""):
         trainer.loadParameters(args.initial_model);
         print("Model {} loaded!".format(args.initial_model));
-
+    # pdb.set_trace() # breakpoint 2 
     ## If the current iteration is not 1, update the scheduler
     
     for ii in range(1,it):
@@ -124,7 +126,7 @@ def main_worker(args):
     ## Print total number of model parameters
     pytorch_total_params = sum(p.numel() for p in s.__S__.parameters())
     print('Total model parameters: {:,}'.format(pytorch_total_params))
-    pdb.set_trace() # break point 4
+    # pdb.set_trace() # break point 4
     
     ## Evaluation code 
     if args.eval == True:
@@ -149,7 +151,7 @@ def main_worker(args):
     scorefile.write('{}\n{}\n'.format(strtime,args))
     scorefile.flush()
     print("Start iterating from now on. continue?")
-    pdb.set_trace() #breakpoint 5
+    # pdb.set_trace() #breakpoint 5
     ## Core training script
     for it in range(it,args.max_epoch+1):
 

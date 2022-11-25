@@ -19,6 +19,10 @@ python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/
 ```
 python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path pretrain_models/kor_VGG --batch_size 64 --max_epoch 200 --train_path data/kor_VGGface2/train --test_path data/kor_VGGface2/val --test_list data/kor_VGGface2/val_pairs.csv --gpu 1
 ```
+### Train using KOR VGGface preprocessed model
+```
+python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/pre_VGG --batch_size 64 --max_epoch 100 --train_path data/proj_data/train --test_path data/proj_data/val --test_list data/proj_data/val_pairs.csv  --gpu 1 --initial_model pretrain_models/kor_VGG/model000000200.model
+```
 
 GPU ID must be specified using `--gpu` flag.
 
