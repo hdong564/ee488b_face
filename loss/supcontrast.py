@@ -41,7 +41,6 @@ class LossFunction(nn.Module):
         #                      'at least 3 dimensions are required')
         # if len(features.shape) > 3:
         features = features.view(features.shape[0], features.shape[1], -1)
-
         batch_size = features.shape[0]
         if labels is not None and mask is not None:
             raise ValueError('Cannot define both `labels` and `mask`')
@@ -95,6 +94,6 @@ class LossFunction(nn.Module):
         # loss
         loss = - (self.temperature / self.base_temperature) * mean_log_prob_pos
         loss = loss.view(anchor_count, batch_size).mean()
-
+        print(loss)
         return loss
 

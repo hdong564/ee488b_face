@@ -14,9 +14,13 @@ pip install -r requirements.txt
 python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/exp1 --nClasses 2000 --batch_size 200 --gpu 8
 ```
 
-### pretrain cropped vgg (train only no val)
+### pretrain cropped vgg iresnet(too many params)
 ```
-python ./trainEmbedNet.py --model iResNet101 --trainfunc supcontrast --save_path pretrained_model/ires-supc_b200 --nClasses 2000 --batch_size 200 --gpu 1 --train_path data/resized_vggface2 --train_only 1
+python ./trainEmbedNet.py --model iResNet101 --trainfunc supcontrast --save_path pretrained_model/ires-supc_b200 --nClasses 2000 --batch_size 200 --gpu 1 --train_path data/resized_vggface2
+```
+### pretrain cropped vgg EfficientNet(too many params)
+```
+python ./trainEmbedNet.py --model EfficientNet --trainfunc supcontrast --save_path pretrained_model/EfficientNet_Supcon --train_path data/resized_vggface2 --test_path data/kor_VGGface2/val --test_list data/kor_VGGface2/val_pairs.csv --max_epoch 30  --test_interval 3 --nOut 256 --gpu 1 --batch_size 32
 ```
 
 GPU ID must be specified using `--gpu` flag.

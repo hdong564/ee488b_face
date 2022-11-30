@@ -22,7 +22,6 @@ class meta_loader(Dataset):
         
         ## Read Training Files
         files = glob.glob('%s/*/*.%s'%(train_path,train_ext))
-        print('%s/*/*.%s'%(train_path,train_ext))
         ## Make a mapping from Class Name to Class Number
         dictkeys = list(set([x.split('/')[-2] for x in files]))
         dictkeys.sort()
