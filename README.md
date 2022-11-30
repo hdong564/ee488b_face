@@ -15,13 +15,25 @@ python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/
 ```
 
 
-### Training method I used
+### Training method I used => batch 64 for korface
 ```
 python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path pretrain_models/kor_VGG --batch_size 64 --max_epoch 200 --train_path data/kor_VGGface2/train --test_path data/kor_VGGface2/val --test_list data/kor_VGGface2/val_pairs.csv --gpu 1
 ```
-### Train using KOR VGGface preprocessed model
+### Training method I used => batch 200 for korface
+```
+python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path pretrain_models/kor_VGG_batch200 --batch_size 200 --max_epoch 100 --train_path data/kor_VGGface2/train --test_path data/kor_VGGface2/val --test_list data/kor_VGGface2/val_pairs.csv --gpu 0
+```
+### Train using KOR VGGface preprocessed model => batch64
 ```
 python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/pre_VGG --batch_size 64 --max_epoch 100 --train_path data/proj_data/train --test_path data/proj_data/val --test_list data/proj_data/val_pairs.csv  --gpu 1 --initial_model pretrain_models/kor_VGG/model000000200.model
+```
+### Train using KOR VGGface preprocessed model => batch200
+```
+python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/pre_VGG_batch200 --batch_size 200 --max_epoch 100 --train_path data/proj_data/train --test_path data/proj_data/val --test_list data/proj_data/val_pairs.csv  --gpu 1 --initial_model pretrain_models/kor_VGG/model000000200.model
+```
+### Pretrain data
+```
+python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path pretrain_models/pretrain_ver1.0 --batch_size 200 --max_epoch 100 --train_path data/pretrain/train --test_interval 0 --test_list data/pretrain/val_pairs.csv --gpu 1 --train_ext wav
 ```
 
 GPU ID must be specified using `--gpu` flag.

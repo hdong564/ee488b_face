@@ -74,10 +74,10 @@ class ModelTrainer(object):
         index   = 0;
         loss    = 0;
 
-        with tqdm(loader, unit="batch") as tepoch:
-        
-            for data, label in tepoch:
+    
 
+        with tqdm(loader, unit="batch") as tepoch:
+            for data, label in tepoch:
                 tepoch.total = tepoch.__len__()
 
                 data    = data.transpose(1,0)
@@ -107,7 +107,7 @@ class ModelTrainer(object):
                 if self.lr_step == 'iteration': self.__scheduler__.step()
 
             if self.lr_step == 'epoch': self.__scheduler__.step()
-        
+            print("..?")
         return (loss/counter);
 
 
