@@ -68,7 +68,7 @@ parser.add_argument('--mixedprec',      dest='mixedprec',   action='store_true',
 parser.add_argument('--gpu',            type=int,   default=9,      help='GPU index');
 
 ## Only Training without validataion
-parser.add_argument('--train_only',     type=int,   default=0,      help='1 if you want only training, no validation');
+#parser.add_argument('--train_only',     type=int,   default=0,      help='1 if you want only training, no validation');
 args = parser.parse_args();
 
 
@@ -80,8 +80,7 @@ def main_worker(args):
 
     ## Load models
     s = EmbedNet(**vars(args)).cuda();
-    print("loaded args to EmbedNet")
-    # pdb.set_trace() # breakpoint 2 
+ 
     it          = 1
 
     ## Input transformations for training
@@ -104,16 +103,12 @@ def main_worker(args):
 
     ## Load model weights
     modelfiles = glob.glob('{}/model0*.model'.format(args.save_path))
-    # pdb.set_trace() # breakpoint 2 
-    print(args.save_path)
     modelfiles.sort()
-    print("check weather model already exists")
-    # pdb.set_trace() # breakpoint 3
     
     ## If the target directory already exists, start from the existing file
     # pdb.set_trace() # breakpoint 2 
     if len(modelfiles) >= 1:
-        print("Model training yet!")
+        #print("Model training yet!")
         trainer.loadParameters(modelfiles[-1]);
         print("Model {} loaded from previous state!".format(modelfiles[-1]));
         it = int(os.path.splitext(os.path.basename(modelfiles[-1]))[0][5:]) + 1
@@ -161,20 +156,19 @@ def main_worker(args):
         print(time.strftime("%Y-%m-%d %H:%M:%S"), it, "Training epoch {:d} with LR {:.5f} ".format(it,max(clr)));
 
         loss = trainer.train_network(trainLoader);
-        if args.train_only == 0: # default : 0 , only train: 1
-            if it % args.test_interval == 0: 
-                
-                sc, lab, trials = trainer.evaluateFromList(transform=test_transform, **vars(args))
-                result = tuneThresholdfromScore(sc, lab, [1, 0.1]);
+        if it % args.test_interval == 0: 
+            
+            sc, lab, trials = trainer.evaluateFromList(transform=test_transform, **vars(args))
+            result = tuneThresholdfromScore(sc, lab, [1, 0.1]);
 
-                print("IT {:d}, Val EER {:.5f}".format(it, result[1]));
-                scorefile.write("IT {:d}, Val EER {:.5f}\n".format(it, result[1]));
+            print("IT {:d}, Val EER {:.5f}".format(it, result[1]));
+            scorefile.write("IT {:d}, Val EER {:.5f}\n".format(it, result[1]));
 
-                trainer.saveParameters(args.save_path+"/model{:09d}.model".format(it));
+            trainer.saveParameters(args.save_path+"/model{:09d}.model".format(it));
 
         print(time.strftime("%Y-%m-%d %H:%M:%S"), "TLOSS {:.5f}".format(loss));
         scorefile.write("IT {:d}, TLOSS {:.5f}\n".format(it, loss));
-        
+
         scorefile.flush()
 
     scorefile.close();

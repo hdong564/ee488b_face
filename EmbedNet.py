@@ -16,6 +16,7 @@ class EmbedNet(nn.Module):
         super(EmbedNet, self).__init__();
 
         ## __S__ is the embedding model
+        #import pdb;pdb.set_trace()
         EmbedNetModel = importlib.import_module('models.'+model).__getattribute__('MainModel')
         self.__S__ = EmbedNetModel(**kwargs);
 
@@ -107,7 +108,7 @@ class ModelTrainer(object):
                 if self.lr_step == 'iteration': self.__scheduler__.step()
 
             if self.lr_step == 'epoch': self.__scheduler__.step()
-            print("..?")
+            
         return (loss/counter);
 
 

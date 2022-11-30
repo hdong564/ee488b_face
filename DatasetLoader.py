@@ -25,7 +25,6 @@ class meta_loader(Dataset):
         print('%s/*/*.%s'%(train_path,train_ext))
         ## Make a mapping from Class Name to Class Number
         dictkeys = list(set([x.split('/')[-2] for x in files]))
-        print(dictkeys)
         dictkeys.sort()
         dictkeys = { key : ii for ii, key in enumerate(dictkeys) }
 
@@ -46,7 +45,7 @@ class meta_loader(Dataset):
             
             self.data_label.append(speaker_label)
             self.data_list.append(file)
-        import pdb;pdb.set_trace()
+        #import pdb;pdb.set_trace()
         
         print('{:d} files from {:d} classes found.'.format(len(self.data_list),len(self.label_dict)))
 

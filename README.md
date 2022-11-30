@@ -13,20 +13,10 @@ pip install -r requirements.txt
 ```
 python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/exp1 --nClasses 2000 --batch_size 200 --gpu 8
 ```
+
+### pretrain cropped vgg (train only no val)
 ```
-python ./trainEmbedNet.py -- model iResnet101 --trainfunc supcontrast --save_path pretrained_model/ires-supc --nClasses 2000
-```
-### Train using KOR VGGface preprocessed model => batch64
-```
-python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/pre_VGG --batch_size 64 --max_epoch 100 --train_path data/proj_data/train --test_path data/proj_data/val --test_list data/proj_data/val_pairs.csv  --gpu 1 --initial_model pretrain_models/kor_VGG/model000000200.model
-```
-### Train using KOR VGGface preprocessed model => batch200
-```
-python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/pre_VGG_batch200 --batch_size 200 --max_epoch 100 --train_path data/proj_data/train --test_path data/proj_data/val --test_list data/proj_data/val_pairs.csv  --gpu 1 --initial_model pretrain_models/kor_VGG/model000000200.model
-```
-### Pretrain data
-```
-python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path pretrain_models/pretrain_ver1.0 --batch_size 200 --max_epoch 100 --train_path data/pretrain/train --test_interval 0 --test_list data/pretrain/val_pairs.csv --gpu 1 --train_ext wav
+python ./trainEmbedNet.py --model iResNet101 --trainfunc supcontrast --save_path pretrained_model/ires-supc_b200 --nClasses 2000 --batch_size 200 --gpu 1 --train_path data/resized_vggface2 --train_only 1
 ```
 
 GPU ID must be specified using `--gpu` flag.
