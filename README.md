@@ -13,15 +13,8 @@ pip install -r requirements.txt
 ```
 python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path exps/exp1 --nClasses 2000 --batch_size 200 --gpu 8
 ```
-
-
-### Training method I used => batch 64 for korface
 ```
-python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path pretrain_models/kor_VGG --batch_size 64 --max_epoch 200 --train_path data/kor_VGGface2/train --test_path data/kor_VGGface2/val --test_list data/kor_VGGface2/val_pairs.csv --gpu 1
-```
-### Training method I used => batch 200 for korface
-```
-python ./trainEmbedNet.py --model ResNet18 --trainfunc softmax --save_path pretrain_models/kor_VGG_batch200 --batch_size 200 --max_epoch 100 --train_path data/kor_VGGface2/train --test_path data/kor_VGGface2/val --test_list data/kor_VGGface2/val_pairs.csv --gpu 0
+python ./trainEmbedNet.py -- model iResnet101 --trainfunc supcontrast --save_path pretrained_model/ires-supc --nClasses 2000
 ```
 ### Train using KOR VGGface preprocessed model => batch64
 ```

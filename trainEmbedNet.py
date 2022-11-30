@@ -67,6 +67,8 @@ parser.add_argument('--output',         type=str,   default="",     help='Save a
 parser.add_argument('--mixedprec',      dest='mixedprec',   action='store_true', help='Enable mixed precision training')
 parser.add_argument('--gpu',            type=int,   default=9,      help='GPU index');
 
+## Only Training without validataion
+parser.add_argument('--train_only',     type=int,   default=0,      help='1 if you want only training, no validation');
 args = parser.parse_args();
 
 
@@ -150,8 +152,7 @@ def main_worker(args):
     strtime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     scorefile.write('{}\n{}\n'.format(strtime,args))
     scorefile.flush()
-    print("Start iterating from now on. continue?")
-    # pdb.set_trace() #breakpoint 5
+
     ## Core training script
     for it in range(it,args.max_epoch+1):
 
@@ -160,20 +161,20 @@ def main_worker(args):
         print(time.strftime("%Y-%m-%d %H:%M:%S"), it, "Training epoch {:d} with LR {:.5f} ".format(it,max(clr)));
 
         loss = trainer.train_network(trainLoader);
+        if args.train_only == 0: # default : 0 , only train: 1
+            if it % args.test_interval == 0: 
+                
+                sc, lab, trials = trainer.evaluateFromList(transform=test_transform, **vars(args))
+                result = tuneThresholdfromScore(sc, lab, [1, 0.1]);
 
-        if it % args.test_interval == 0:
-            
-            sc, lab, trials = trainer.evaluateFromList(transform=test_transform, **vars(args))
-            result = tuneThresholdfromScore(sc, lab, [1, 0.1]);
+                print("IT {:d}, Val EER {:.5f}".format(it, result[1]));
+                scorefile.write("IT {:d}, Val EER {:.5f}\n".format(it, result[1]));
 
-            print("IT {:d}, Val EER {:.5f}".format(it, result[1]));
-            scorefile.write("IT {:d}, Val EER {:.5f}\n".format(it, result[1]));
-
-            trainer.saveParameters(args.save_path+"/model{:09d}.model".format(it));
+                trainer.saveParameters(args.save_path+"/model{:09d}.model".format(it));
 
         print(time.strftime("%Y-%m-%d %H:%M:%S"), "TLOSS {:.5f}".format(loss));
         scorefile.write("IT {:d}, TLOSS {:.5f}\n".format(it, loss));
-
+        
         scorefile.flush()
 
     scorefile.close();
